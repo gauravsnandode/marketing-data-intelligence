@@ -32,7 +32,28 @@ df['combined_text'] = df['product_name'].fillna('') + " | " + df['about_product'
 documents = df['combined_text'].tolist()
 
 # Store the original data that corresponds to each document for later retrieval
-product_data = df[['product_id', 'product_name', 'category', 'actual_price', 'about_product']].to_dict(orient='records')
+# --- Normalize price field to a numeric value (strip currency symbols and commas) ---
+def _parse_price(x):
+    try:
+        s = str(x)
+        s = s.replace('₹', '').replace(',', '').strip()
+        return float(s) if s not in ['', 'nan', 'None'] else None
+    except Exception:
+        return None
+
+df['actual_price_numeric'] = df['actual_price'].apply(_parse_price)
+
+# --- Split category into main and sub categories for convenient filtering ---
+category_levels = df['category'].fillna('').str.split('|', expand=True)
+df['main_category'] = category_levels[0].fillna('').astype(str)
+for i in range(1, 7):
+    col = f'sub_category_{i}'
+    if i < category_levels.shape[1]:
+        df[col] = category_levels[i].fillna('').astype(str)
+    else:
+        df[col] = ''
+
+product_data = df[['product_id', 'product_name', 'category', 'main_category', 'sub_category_1', 'sub_category_2', 'sub_category_3', 'actual_price', 'actual_price_numeric', 'about_product']].to_dict(orient='records')
 
 # --- 3. Generate Embeddings ---
 print(f"Loading sentence transformer model: {MODEL_NAME}...")
@@ -48,7 +69,7 @@ index = faiss.IndexFlatL2(d)  # Using a simple L2 distance index
 index.add(embeddings)
 
 print(f"Saving FAISS index to {FAISS_INDEX_PATH}")
-faiss.write_index(index, FAISS_INDEX_PATH)
+faiss.write_index(index, d subcategorie)
 
 print(f"Saving product data mapping to {PRODUCT_DATA_PATH}")
 joblib.dump(product_data, PRODUCT_DATA_PATH)
