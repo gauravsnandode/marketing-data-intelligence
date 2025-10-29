@@ -246,22 +246,6 @@ Reported results (from current run)
 
 ---
 
-## Recommended next steps (prioritized)
-
-1. Add automated unit tests for endpoints, input validation, and loading behavior. (pytest)
-2. Add a health/readiness endpoint (`/health`) that reports:
-   - discount model loaded
-   - RAG resources loaded (or not)
-   - useful for Docker/Kubernetes readiness probes.
-3. Add explainability endpoint (SHAP) or add a notebook that visualizes feature importances.
-4. Integrate a small open-source LLM for generation (e.g., Llama2 family with quantization) and implement fine-tuning/adaptation via LoRA/PEFT on domain data.
-5. Create a conda-based Dockerfile or dedicated CI runner if binary dependency issues persist across platforms; conda solves many compiled wheel problems.
-6. Add CI/CD:
-   - Build image and run unit tests and integration tests in GitHub Actions.
-   - Optional: push artifacts to registry and tag model versions.
-
----
-
 ## Useful commands & quick checklist
 
 Run API locally:
@@ -305,27 +289,3 @@ print('R2', r2_score(y, pred))
 ```
 
 ---
-
-## Limitations & known issues
-- Binary wheel compatibility is sensitive — the Dockerfile pins NumPy and uses CPU-only wheels for torch/faiss; building on non-Linux hosts may still be problematic.
-- Current LLM generation is not integrated; `answer_question` returns retrieved context (RAG) but not a generated answer. Adding generation requires careful safety and resource considerations.
-- No automated retraining pipeline is implemented yet.
-
----
-
-## Appendix: Short technical checklist to finalize before submission
-- [ ] Confirm `src/api/model/` contains all artifacts (`discount_predictor.pkl`, `model_columns.pkl`, `product_data.pkl`, `product_index.faiss`) before building the image or mount them as a volume.
-- [ ] Add `/health` endpoint and readiness probes in Docker Compose or Kubernetes.
-- [ ] Add unit tests (pytest) and CI workflow.
-- [ ] Add SHAP explainability notebook and include screenshots/plots in the final report.
-- [ ] If LLM generation is required, pick a model, test inference locally (consider quantized weights), and integrate with a generation step in `answer_question` with safety filters.
-
----
-
-If you want, I can:
-- Generate a one-page PDF summary from this report.
-- Add a `/health` endpoint and tests for it.
-- Implement LLM generation with a small open-source model and a LoRA fine-tuning recipe plus example training code.
-- Convert the Dockerfile to a conda-based Dockerfile (recommended if more binary builds are required).
-
-Which follow-up would you like me to do next?
