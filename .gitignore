@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+venv/
+.venv/
+
+# IDEs
+.idea/
+.vscode/
+
+# Mac
+.DS_Store
+
+# Data and model artifacts (do NOT commit large files to git)
+*.pt
+*.bin
+
+# Docker
+.dockerignore
+
+# Logs
+*.log
+
+# pytest
+.pytest_cache/
+
+# Temporary
+dist/
+build/
+__MACOSX/

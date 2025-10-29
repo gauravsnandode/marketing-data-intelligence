@@ -1,0 +1,90 @@
+(venv) coditas@192 HG % python test_api.py
+/Users/coditas/Desktop/Study/Assignments/HG/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+--- Running Predict Discount Test 1 ---
+Hitting endpoint: http://127.0.0.1:8000/predict_discount
+Request successful!
+Input: {"category": 10, "actual_price": 2999.0, "rating": 4.5, "rating_count": 12500.0}
+Response: {
+  "predicted_discount_percentage": 25.44
+}
+
+--- Running Predict Discount Test 2 ---
+Hitting endpoint: http://127.0.0.1:8000/predict_discount
+Request successful!
+Input: {"category": 5, "actual_price": 499.0, "rating": 3.8, "rating_count": 800.0}
+Response: {
+  "predicted_discount_percentage": 14.61
+}
+
+--- Running Answer Question Test 1 ---
+Hitting endpoint: http://127.0.0.1:8000/answer_question
+Request successful!
+Input: {"query": "are there any good wireless earbuds?", "top_k": 2}
+Response: {
+  "query": "are there any good wireless earbuds?",
+  "retrieved_context": [
+    {
+      "retrieved_product": {
+        "about_product": "Note : If the size of the earbud tips does not match the size of your ear canals or the headset is not worn properly in your ears, you may not obtain the correct sound qualities or call performance. Change the earbud tips to ones that fit more snugly in your ears",
+        "actual_price": "\u20b95,999",
+        "category": "Electronics|Headphones,Earbuds&Accessories|Headphones|In-Ear",
+        "product_id": "B09ND94ZRG",
+        "product_name": "Boult Audio Airbass Propods X TWS Bluetooth Truly Wireless in Ear Earbuds with Mic, 32H Playtime, Fast Charging Type-C, Ipx5 Water Resistant, Touch Controls and Voice Assistant (Red)"
+      },
+      "similarity_score": 0.244673490524292
+    },
+    {
+      "retrieved_product": {
+        "about_product": "Drivers- These true wireless earbuds have powerful 6mm drivers for an enthralling playback experience|Dual Tone Finish- Its dual tone colours offer an aesthetical edge and define a true listening time|Playback- Airdopes 171 offers a nonstop playback of up to 3H with each charge and an additional 10H playtime with the included charging case|Lightweight- These true wireless earbuds weigh about 4g per each so you may keep them plugged for longer duration with comfort|IP Rating- Airdopes 171 is IPX4 rated for providing resistance against sweat, splash and dust scares.|Bluetooth- boAt Airdopes 171 offers true wireless experience with latest Bluetooth v5.0.|Control- The TWS earbuds offer easy access multifunction button controls with stereo calling feature",
+        "actual_price": "\u20b95,999",
+        "category": "Electronics|Headphones,Earbuds&Accessories|Headphones|In-Ear",
+        "product_id": "B086WMSCN3",
+        "product_name": "boAt Airdopes 171 in Ear Bluetooth True Wireless Earbuds with Upto 13 Hours Battery, IPX4, Bluetooth v5.0, Dual Tone Finish with Mic (Mysterious Blue)"
+      },
+      "similarity_score": 0.21232599020004272
+    }
+  ]
+}
+
+--- Running Answer Question Test 2 ---
+Hitting endpoint: http://127.0.0.1:8000/answer_question
+Request successful!
+Input: {"query": "which monitor is good for gaming"}
+Response: {
+  "query": "which monitor is good for gaming",
+  "retrieved_context": [
+    {
+      "retrieved_product": {
+        "about_product": "24 inch Samsung Monitor - 1,920 x 1,080 Resolution IPS Panel Monitor|3-sided borderless display for All-expansive view|Fluid pictures with 75hz refresh rate | 5 ms response time | 250cd/m2 Brightness (Typical)|Aspect Ratio: 16:9 | 178\u00b0 Horizontal and Vertical Viewing Angle|FreeSync and Game Mode to adjust any game and fill screen|Eye Saver Mode and Flicker free to reduce eye strain|Connectivity : D-Sub Port, HDMI|3 Years Warranty on Product From Manufacturer",
+        "actual_price": "\u20b919,110",
+        "category": "Computers&Accessories|Monitors",
+        "product_id": "B08J82K4GX",
+        "product_name": "Samsung 24-inch(60.46cm) FHD Monitor, IPS, 75 Hz, Bezel Less Design, AMD FreeSync, Flicker Free, HDMI, D-sub, (LF24T350FHWXXL, Dark Blue Gray)"
+      },
+      "similarity_score": -0.03247189521789551
+    },
+    {
+      "retrieved_product": {
+        "about_product": "Superior Stability: Built-in advanced Certified AG6200 IC chip converts HDMI digital signal to VGA analog signal. It is NOT a bi-directional converter and cannot transmit signals from VGA to HDMI.|Compact Design: Tizum HDMI to VGA adapter is compact & lightweight which makes it easy to carry, travel friendly and also saves space on your desk helping it keep clutter free.|High Definition Image Quality: The HDMI male to VGA female converter supports resolution up to 1920x1080 60Hz (1080p Full HD) including 720p, 1600x1200, 1280x1024 for high definition monitors & projectors.|Wide Compatibility: The adapter is compatible with Computer, PC, Desktop, Laptop, Notebook, Chromebook, PS3, Xbox, Set Top Box, TV & other devices with HDMI port. Note: Does not Support Audio.|Incredible Performance: It resists corrosion & abrasion; improves signal transmission; & protects HDMI port of your device to ensure a longer lifespan",
+        "actual_price": "\u20b9499",
+        "category": "Electronics|HomeTheater,TV&Video|Accessories|Cables|HDMICables",
+        "product_id": "B085194JFL",
+        "product_name": "tizum HDMI to VGA Adapter Cable 1080P for Projector, Computer, Laptop, TV, Projectors & TV"
+      },
+      "similarity_score": -0.10371053218841553
+    },
+    {
+      "retrieved_product": {
+        "about_product": "Superior Stability: Built-in advanced Certified AG6200 IC chip converts HDMI digital signal to VGA analog signal. It is NOT a bi-directional converter and cannot transmit signals from VGA to HDMI.|Compact Design: Tizum HDMI to VGA adapter is compact & lightweight which makes it easy to carry, travel friendly and also saves space on your desk helping it keep clutter free.|High Definition Image Quality: The HDMI male to VGA female converter supports resolution up to 1920x1080 60Hz (1080p Full HD) including 720p, 1600x1200, 1280x1024 for high definition monitors & projectors.|Wide Compatibility: The adapter is compatible with Computer, PC, Desktop, Laptop, Notebook, Chromebook, PS3, Xbox, Set Top Box, TV & other devices with HDMI port. Note: Does not Support Audio.|Incredible Performance: It resists corrosion & abrasion; improves signal transmission; & protects HDMI port of your device to ensure a longer lifespan",
+        "actual_price": "\u20b9499",
+        "category": "Electronics|HomeTheater,TV&Video|Accessories|Cables|HDMICables",
+        "product_id": "B085194JFL",
+        "product_name": "tizum HDMI to VGA Adapter Cable 1080P for Projector, Computer, Laptop, TV, Projectors & TV"
+      },
+      "similarity_score": -0.10371053218841553
+    }
+  ]
+}
+
+(venv) coditas@192 HG % 
