@@ -1,0 +1,84 @@
+(venv) @192 HG % docker compose build --no-cache
+
+WARN[0000] /Users//Desktop/Study/Assignments/HG/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Building 580.7s (17/17) FINISHED                                                                                       
+ => [internal] load local bake definitions                                                                            0.0s
+ => => reading from stdin 541B                                                                                        0.0s
+ => [internal] load build definition from Dockerfile                                                                  0.0s
+ => => transferring dockerfile: 2.08kB                                                                                0.0s
+ => [internal] load metadata for docker.io/library/python:3.9-slim                                                    2.7s
+ => [internal] load .dockerignore                                                                                     0.0s
+ => => transferring context: 124B                                                                                     0.0s
+ => CACHED [ 1/10] FROM docker.io/library/python:3.9-slim@sha256:545badebace9a958b98d3e272f0f0d46c0a1a389ac77e24c33f  0.0s
+ => => resolve docker.io/library/python:3.9-slim@sha256:545badebace9a958b98d3e272f0f0d46c0a1a389ac77e24c33f2e7b548ce  0.0s
+ => [internal] load build context                                                                                     0.0s
+ => => transferring context: 3.17kB                                                                                   0.0s
+ => [ 2/10] RUN apt-get update     && apt-get install -y --no-install-recommends        build-essential        gcc   93.5s
+ => [ 3/10] WORKDIR /app                                                                                              0.1s 
+ => [ 4/10] COPY requirements.txt /app/requirements.txt                                                               0.0s 
+ => [ 5/10] RUN python -m pip install --upgrade pip setuptools wheel &&     pip install --no-cache-dir --prefer-bin  61.2s 
+ => [ 6/10] RUN pip install --no-cache-dir "torch==2.2.0+cpu" --extra-index-url https://download.pytorch.org/whl/cp  92.2s 
+ => [ 7/10] RUN pip install --no-cache-dir faiss-cpu                                                                 20.8s 
+ => [ 8/10] RUN sed -E '/^(torch|torchvision|torchaudio|faiss|faiss-cpu|numpy|scipy|scikit-learn|pandas)/I d' /app  201.6s 
+ => [ 9/10] RUN python -c "import pkgutil, sys;     exit(0) if pkgutil.find_loader('flask') else sys.exit(1)" || pip  0.4s 
+ => [10/10] COPY . /app                                                                                               0.1s 
+ => exporting to image                                                                                              107.3s 
+ => => exporting layers                                                                                              68.7s 
+ => => exporting manifest sha256:4365b930e2c01653f0c02eea6ef85e108e5c8133cc69578a5cf4ee02b6e4ed92                     0.0s 
+ => => exporting config sha256:0e524328692c3b99b667d3e57c748a40959f284357123c0a90fbe3b4a4f64d48                       0.0s 
+ => => exporting attestation manifest sha256:43d123fcfa18c4ae4342411550e91bf376d31da55f8eddefe8ea306322c25d4e         0.0s
+ => => exporting manifest list sha256:6922a96b0ab35751db9be8662f30bec7e5c7b578b43d2c7e5b325514c9f2d5fa                0.0s
+ => => naming to docker.io/library/hg-api:latest                                                                      0.0s
+ => => unpacking to docker.io/library/hg-api:latest                                                                  38.4s
+ => resolving provenance for metadata file                                                                            0.0s
+[+] Building 1/1
+ ✔ hg-api  Built                                                                                                      0.0s 
+(venv) @192 HG % docker compose up
+WARN[0000] /Users//Desktop/Study/Assignments/HG/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Building 6.3s (17/17) FINISHED                                                                                                       
+ => [internal] load local bake definitions                                                                                          0.0s
+ => => reading from stdin 517B                                                                                                      0.0s
+ => [internal] load build definition from Dockerfile                                                                                0.0s
+ => => transferring dockerfile: 2.08kB                                                                                              0.0s
+ => [internal] load metadata for docker.io/library/python:3.9-slim                                                                  5.6s
+ => [internal] load .dockerignore                                                                                                   0.0s
+ => => transferring context: 124B                                                                                                   0.0s
+ => [internal] load build context                                                                                                   0.0s
+ => => transferring context: 1.12kB                                                                                                 0.0s
+ => [ 1/10] FROM docker.io/library/python:3.9-slim@sha256:545badebace9a958b98d3e272f0f0d46c0a1a389ac77e24c33f2e7b548ce1b6b          0.0s
+ => => resolve docker.io/library/python:3.9-slim@sha256:545badebace9a958b98d3e272f0f0d46c0a1a389ac77e24c33f2e7b548ce1b6b            0.0s
+ => CACHED [ 2/10] RUN apt-get update     && apt-get install -y --no-install-recommends        build-essential        gcc        g  0.0s
+ => CACHED [ 3/10] WORKDIR /app                                                                                                     0.0s
+ => CACHED [ 4/10] COPY requirements.txt /app/requirements.txt                                                                      0.0s
+ => CACHED [ 5/10] RUN python -m pip install --upgrade pip setuptools wheel &&     pip install --no-cache-dir --prefer-binary       0.0s
+ => CACHED [ 6/10] RUN pip install --no-cache-dir "torch==2.2.0+cpu" --extra-index-url https://download.pytorch.org/whl/cpu         0.0s
+ => CACHED [ 7/10] RUN pip install --no-cache-dir faiss-cpu                                                                         0.0s
+ => CACHED [ 8/10] RUN sed -E '/^(torch|torchvision|torchaudio|faiss|faiss-cpu|numpy|scipy|scikit-learn|pandas)/I d' /app/requirem  0.0s
+ => CACHED [ 9/10] RUN python -c "import pkgutil, sys;     exit(0) if pkgutil.find_loader('flask') else sys.exit(1)" || pip instal  0.0s
+ => CACHED [10/10] COPY . /app                                                                                                      0.0s
+ => exporting to image                                                                                                              0.1s
+ => => exporting layers                                                                                                             0.0s
+ => => exporting manifest sha256:4365b930e2c01653f0c02eea6ef85e108e5c8133cc69578a5cf4ee02b6e4ed92                                   0.0s
+ => => exporting config sha256:0e524328692c3b99b667d3e57c748a40959f284357123c0a90fbe3b4a4f64d48                                     0.0s
+ => => exporting attestation manifest sha256:2e4a36bfd12f429daff71b64eb2244ab2e54768a8eaaa04f702ec6bffa02ab10                       0.0s
+ => => exporting manifest list sha256:d3195f6fea2395cb1cc5e0d2bedb95847642563833bf4bd1d3532ce6ecaaf00f                              0.0s
+ => => naming to docker.io/library/hg-api:latest                                                                                    0.0s
+ => => unpacking to docker.io/library/hg-api:latest                                                                                 0.0s
+ => resolving provenance for metadata file                                                                                          0.0s
+[+] Running 2/2
+ ✔ hg-api              Built                                                                                                        0.0s 
+ ✔ Container hg-api-1  Recreated                                                                                                    2.2s 
+Attaching to api-1
+api-1  | Discount prediction model loaded successfully.
+api-1  |  * Serving Flask app 'main'
+api-1  |  * Debug mode: on
+api-1  | WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+api-1  |  * Running on all addresses (0.0.0.0)
+api-1  |  * Running on http://127.0.0.1:8000
+api-1  |  * Running on http://172.18.0.2:8000
+api-1  | Press CTRL+C to quit
+api-1  |  * Restarting with stat
+api-1  | Discount prediction model loaded successfully.
+api-1  |  * Debugger is active!
+api-1  |  * Debugger PIN: 136-285-245
+api-1  | prediction: [25.440062]
