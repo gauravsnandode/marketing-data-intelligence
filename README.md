@@ -165,48 +165,6 @@ Notes / gotchas encountered
 
 ---
 
-## Testing, validation & CI suggestions
-
-Unit & integration tests
-- Unit tests: add pytest tests for:
-  - Input validation in `/predict_discount`.
-  - Serialization and edge-handling in JSON outputs.
-  - `_load_rag_resources()` behaviors (mock missing artifacts).
-- Integration tests:
-  - `test_api.py` already provided. Run it while service is running to validate endpoints.
-Load testing
-- Use `locust` or `k6` to validate the API under load:
-  - Script example: simulate concurrent POSTs to `/predict_discount` and `/answer_question`.
-- Example: `locustfile.py` with endpoints.
-
-Safety & rules validation
-- Add a safety layer to the LLM generation (if added) to block sensitive or harmful outputs.
-- Add rate-limiting on API (e.g., via nginx or in-app token bucket) for abuse protection.
-
-Observability & monitoring
-- Add Prometheus metrics (requests, latency, errors) and Grafana dashboards.
-- Add logs to stdout in structured JSON to integrate with ELK/Cloud logging.
-- Add Sentry (optional) for exception tracking.
-
-Continuous retraining & drift detection (nice to have)
-- Pipeline:
-  - Automate nightly or periodic retraining via CI/CD or Airflow.
-  - Monitor input data distributions and model predictive distributions for drift (KL divergence, pop stats).
-  - When drift exceeds thresholds, trigger retraining pipeline and CI validations.
-- Tools:
-  - MLflow/Alembic for model versioning; Evidently/WhyLogs for drift detection.
-
-Explainability
-- Use SHAP for local and global interpretation of the discount model.
-- Expose an admin endpoint that returns top-5 SHAP feature contributions for a given prediction to explain why a discount was suggested.
-
-Security
-- Do not include secret keys in images.
-- If using hosted LLMs or model registries, use secure credentials and rotation.
-- Limit model artifact permissions and sanitize inputs for injection attacks.
-
----
-
 ## Evaluation plan (how to score & report)
 
 Regression metrics (predictive model)
